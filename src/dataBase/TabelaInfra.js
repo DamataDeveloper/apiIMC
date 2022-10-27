@@ -6,7 +6,7 @@ class TabelaInfra{
 
     }
     static criaTabelaUsuario(){
-        const sql = 'CREATE TABLE IF NOT EXISTS usuarios (id_usuario INT NOT NULL AUTO_INCREMENT PRIMARY KEY, nome VARCHAR(55) NOT NULL, idade INT NOT NULL,data DATE NOT NULL, status INT NOT NULL)'
+        const sql = 'CREATE TABLE IF NOT EXISTS usuarios (id_usuario INT NOT NULL AUTO_INCREMENT PRIMARY KEY, nome VARCHAR(55) NOT NULL, email VARCHAR(50) NOT NULL, senha VARCHAR(100) NOT NULL, status INT NOT NULL)'
         this.conexao.query(sql, erro =>{
             if(erro){
                 console.log(erro + "[Usuarios]");
@@ -16,7 +16,7 @@ class TabelaInfra{
         })
     }
     static criaTabelaIMC(){
-        const sql = 'CREATE TABLE IF NOT EXISTS imc (id_imc INT NOT NULL AUTO_INCREMENT  PRIMARY KEY, imc FLOAT NOT NULL, altura FLOAT NOT NULL, peso FLOAT NOT NULL, data DATE NOT NULL, fk_Usuarios INT NOT NULL,FOREIGN KEY(fk_Usuarios) REFERENCES usuarios(id_usuario))'
+        const sql = 'CREATE TABLE IF NOT EXISTS imc (id_imc INT NOT NULL AUTO_INCREMENT  PRIMARY KEY, imc FLOAT NOT NULL, altura FLOAT NOT NULL, peso FLOAT NOT NULL, data VARCHAR(12) NOT NULL, fk_Usuarios INT NOT NULL,FOREIGN KEY(fk_Usuarios) REFERENCES usuarios(id_usuario))'
         this.conexao.query(sql, erro =>{
             if(erro){
                 console.log(erro + "[IMC]");
